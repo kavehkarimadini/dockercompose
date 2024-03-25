@@ -7,17 +7,21 @@ services:
     image: 058264225997.dkr.ecr.eu-north-1.amazonaws.com/neuralflow:v6 # Replace with your ECR URI and image tag for NestJS app 
     ports: 
       - "80:3000"  # Map container port 3000 to host port 3000 (adjust if using a different port) 
-    networks:
-      - node-network
+    environment: 
+      - MONGO_URI=mongodb://058264225997.dkr.ecr.eu-north-1.amazonaws.com/mongo:27017/neuralflow  # Set MongoDB connection string 
+    depends_on:
+      - mongodb
+    # networks:
+    #   - node-network
  
   # MongoDB service (remains the same) 
-  mongo: 
+  mongodb: 
     image: 058264225997.dkr.ecr.eu-north-1.amazonaws.com/mongo:latest  # Replace with your ECR URI and image tag for MongoDB 
     ports: 
       - "27017:27017"  # Map container port 27017 to host port 27017 (standard MongoDB port) 
-    networks:
-      - node-network
+#     networks:
+#       - node-network
 
-networks:
-  node-network:
-    driver: bridge
+# networks:
+#   node-network:
+#     driver: bridge
