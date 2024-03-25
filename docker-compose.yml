@@ -4,7 +4,7 @@ services:
   # NestJS application service 
   nest: 
     # Replace "build: ." with the following line 
-    image: 058264225997.dkr.ecr.eu-north-1.amazonaws.com/neuralflow:v6 # Replace with your ECR URI and image tag for NestJS app 
+    image: 058264225997.dkr.ecr.eu-north-1.amazonaws.com/neuralflow:v7 # Replace with your ECR URI and image tag for NestJS app 
     ports: 
       - "80:3000"  # Map container port 3000 to host port 3000 (adjust if using a different port) 
     # environment: 
