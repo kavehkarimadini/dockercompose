@@ -1,0 +1,23 @@
+version: "3.9" 
+ 
+services: 
+  app: 
+    build: . 
+    ports: 
+      - "80:3000"  # Map container port 3000 to host port 3000 
+    volumes: 
+      - ./:/app  # Mount current directory as /app in the container 
+    environment: 
+      - MONGO_URI=mongodb://172.17.0.3:27017/neuralflow  # Set MongoDB connection string 
+    depends_on: 
+      - mongosh 
+ 
+  mongo: 
+    image: mongo:latest  # Use the official latest MongoDB image 
+    ports: 
+      - "27017:27017"  # Map container port 27017 to host port 27017 
+    volumes: 
+      - mongo-data:/data/db  # Persist MongoDB data 
+ 
+volumes: 
+  mongo-data:  # Define a named volume for MongoDB data
