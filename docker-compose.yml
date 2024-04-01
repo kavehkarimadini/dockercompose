@@ -1,6 +1,10 @@
 version: "3.9" 
  
-services: 
+services:
+  quasar:
+    image: 058264225997.dkr.ecr.eu-north-1.amazonaws.com/quasarapp:latest # Replace with your ECR URI and image tag for NestJS app 
+    ports: 
+      - "443:8080"
   # NestJS application service 
   nest: 
     # Replace "build: ." with the following line 
@@ -11,17 +15,9 @@ services:
     #   - MONGO_URI=mongodb://058264225997.dkr.ecr.eu-north-1.amazonaws.com/mongo:27017/neuralflow  # Set MongoDB connection string 
     depends_on:
       - mongodb
-    # networks:
-    #   - node-network
  
   # MongoDB service (remains the same) 
   mongodb: 
     image: 058264225997.dkr.ecr.eu-north-1.amazonaws.com/mongo:latest  # Replace with your ECR URI and image tag for MongoDB 
     ports: 
       - "27017:27017"  # Map container port 27017 to host port 27017 (standard MongoDB port) 
-#     networks:
-#       - node-network
-
-# networks:
-#   node-network:
-#     driver: bridge
