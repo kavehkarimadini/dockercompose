@@ -8,8 +8,8 @@ services:
     image: 058264225997.dkr.ecr.eu-north-1.amazonaws.com/quasarapp:v1 # Replace with your ECR URI and image tag for NestJS app
     volumes:
       - type: volume  # Specify the volume type (required)
-        source: quasar-app:/app/dist  # Source path within Quasar app container
-        target: /usr/share/nginx/html  # Target location inside the Nginx container
+        source: /app/dist  # Source path within Quasar app container quasar-app:
+        target: nginx:/usr/share/nginx/html  # Target location inside the Nginx container
   # NestJS application service 
   nest: 
     # Replace "build: ." with the following line 
