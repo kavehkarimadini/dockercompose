@@ -2,7 +2,11 @@
  
 services:
   quasar:
-    image: 058264225997.dkr.ecr.eu-north-1.amazonaws.com/quasarapp:v1 # Replace with your ECR URI and image tag for NestJS app 
+    image: 058264225997.dkr.ecr.eu-north-1.amazonaws.com/quasarapp:v1 # Replace with your ECR URI and image tag for NestJS app
+    volumes:
+      - type: volume  # Specify the volume type (required)
+        source: quasar-app:/app/dist  # Source path within Quasar app container
+        target: /usr/share/nginx/html  # Target location inside the Nginx container
   # NestJS application service 
   nest: 
     # Replace "build: ." with the following line 
@@ -31,8 +35,5 @@ services:
       - type: volume  # Specify the volume type (required)
         # from: quasar  # Reference the Quasar app service (optional)
         # Mount the directory inside the Quasar app container to the desired location in Nginx
-        source: quasar-app:/app/dist  # Source path within Quasar app container
-        target: /usr/share/nginx/html  # Target location inside the Nginx container
-        nginx-conf:  # Define a named volume
-          ./nginx.conf  # Mount your host config file 
+        source: ./nginx.conf:/etc/nginx/conf.d/default.conf
 
