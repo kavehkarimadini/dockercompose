@@ -1,5 +1,8 @@
 # version: "3.9" 
  
+# volumes:
+#   nginx-conf: ./nginx.conf:/etc/nginx/conf.d/default.conf
+    
 services:
   quasar:
     image: 058264225997.dkr.ecr.eu-north-1.amazonaws.com/quasarapp:v1 # Replace with your ECR URI and image tag for NestJS app
@@ -35,5 +38,5 @@ services:
       - type: volume  # Specify the volume type (required)
         # from: quasar  # Reference the Quasar app service (optional)
         # Mount the directory inside the Quasar app container to the desired location in Nginx
-        source: ./nginx.conf:/etc/nginx/conf.d/default.conf
+        target: ./nginx.conf:/etc/nginx/conf.d/default.conf #/etc/nginx/conf.d/default.conf  # Target path within the container
 
