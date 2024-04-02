@@ -36,4 +36,4 @@ services:
 
 volumes:
   nginx-conf:  # Define a named volume
-    ./nginx.conf:/etc/nginx/conf.d/default.conf  # Mount your host config file 
+    ./nginx.conf  # Mount your host config file 
