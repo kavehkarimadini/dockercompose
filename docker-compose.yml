@@ -34,6 +34,6 @@ services:
         source: /app/dist  # Replace with the actual source directory in your Quasar app image (where static files are copied)
         target: /usr/share/nginx/html  # Target location inside the Nginx container
 
-volumes:
-  nginx-conf:  # Define a named volume
-    ./nginx.conf  # Mount your host config file 
+# volumes:
+#   nginx-conf:  # Define a named volume
+#     ./nginx.conf  # Mount your host config file 
