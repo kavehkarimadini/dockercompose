@@ -29,7 +29,7 @@ services:
       - nest
     volumes:
       - type: volume  # Specify the volume type (required)
-        from: quasar  # Reference the Quasar app service (optional)
+        # from: quasar  # Reference the Quasar app service (optional)
         # Mount the directory inside the Quasar app container to the desired location in Nginx
         source: /app/dist  # Replace with the actual source directory in your Quasar app image (where static files are copied)
         target: /usr/share/nginx/html  # Target location inside the Nginx container
