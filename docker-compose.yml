@@ -33,7 +33,6 @@ services:
         # Mount the directory inside the Quasar app container to the desired location in Nginx
         source: quasar-app:/app/dist  # Source path within Quasar app container
         target: /usr/share/nginx/html  # Target location inside the Nginx container
+        nginx-conf:  # Define a named volume
+          ./nginx.conf  # Mount your host config file 
 
-volumes:
-  nginx-conf:  # Define a named volume
-    ./nginx.conf  # Mount your host config file 
