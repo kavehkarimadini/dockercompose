@@ -1,15 +1,4 @@
-# version: "3.9" 
- 
-# volumes:
-#   nginx-conf: ./nginx.conf:/etc/nginx/conf.d/default.conf
-    
 services:
-  quasar:
-    image: 058264225997.dkr.ecr.eu-north-1.amazonaws.com/quasarapp:v1 # Replace with your ECR URI and image tag for NestJS app
-    volumes:
-      - type: volume  # Specify the volume type (required)
-        source: /app/dist/spa  # Source path within Quasar app container quasar-app:
-        target: nginx:/usr/share/nginx/html  # Target location inside the Nginx container
   # NestJS application service 
   nest: 
     # Replace "build: ." with the following line 
@@ -28,15 +17,10 @@ services:
       - "27017:27017"  # Map container port 27017 to host port 27017 (standard MongoDB port)
     
   nginx:
-    image: 058264225997.dkr.ecr.eu-north-1.amazonaws.com/nginxapp:latest
+    build:
+      context: .
     ports:
       - "80:80"  # Map container port 80 to host port 80
-    depends_on:
-      - quasar  # Ensure Nginx starts after the Quasar app
-      - nest
     volumes:
-      - type: volume  # Specify the volume type (required)
-        # from: quasar  # Reference the Quasar app service (optional)
-        # Mount the directory inside the Quasar app container to the desired location in Nginx
-        target: ./nginx.conf:/etc/nginx/conf.d/default.conf #/etc/nginx/conf.d/default.conf  # Target path within the container
+      - ./dist/spa/:/usr/share/nginx/html/
 
