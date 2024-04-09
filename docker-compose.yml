@@ -23,5 +23,5 @@ services:
       - "80:80"  # Map container port 80 to host port 80
     volumes:
       - ./dist/spa/:/usr/share/nginx/html/
-      - ./nginx/conf.d/:/etc/nginx/conf.d/
+      # - ./nginx/conf.d/:/etc/nginx/conf.d/
 
